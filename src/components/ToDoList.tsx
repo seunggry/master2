@@ -7,10 +7,31 @@ import styled from "styled-components";
 import CreateCategory from "./CreateCategory";
 import NewCategroy from "./NewCategroy";
 
-const Title = styled.div`
+const ToDoListWrap = styled.div`
+    margin: 0 auto;
+    width: 720px;
+`;
+
+const Title = styled.h1`
+    font-size: 48px;
+    font-weight: 700;
+    margin: 20px;
+`;
+
+const SelectWrap = styled.div`
     display: flex;
     align-items: center;
     margin: 10px 0;
+  
+    select{
+      margin-right: 2%;
+      padding: 0 20px;
+      width: 30%;
+      height: 60px;
+      font-size: 20px;
+      border: none;
+      border-radius: 10px;
+    }
 `;
 
 function ToDoList() {
@@ -21,10 +42,10 @@ function ToDoList() {
         setCategory(event.currentTarget.value as any);
     }
     return (
-        <div>
-            <h1>To Dos</h1>
+        <ToDoListWrap>
+            <Title>To Dos</Title>
             <hr/>
-            <Title>
+            <SelectWrap>
                 <select value={category} onInput={onInput}>
                     <option value={Categories.TO_DO}>To Do</option>
                     <option value={Categories.DOING}>Doing</option>
@@ -34,12 +55,12 @@ function ToDoList() {
                     ))}
                 </select>
                 <CreateCategory/>
-            </Title>
+            </SelectWrap>
             <CreateToDo />
             {toDos?.map((toDo) => (
                 <ToDo key={toDo.id} {...toDo}/>
             ))}
-        </div>
+        </ToDoListWrap>
     );
 }
 
