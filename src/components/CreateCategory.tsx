@@ -37,6 +37,7 @@ const Button = styled.button`
     color: #fff;
     border: none;
     border-radius: 10px;
+    z-index: 5;
 `;
 
 const Desc = styled.p`
@@ -56,7 +57,7 @@ function CreateCategory() {
     return (
         <Form onSubmit={handleSubmit(handleValid)}>
             <input
-                {...register("newCategory", {minLength: {value: 3, message: "Your Category is too short"}})}
+                {...register("newCategory", {validate: (value) => value.length > 0, minLength: {value: 3, message: "Your Category is too short"}})}
                 placeholder="Write a to newCategory"
             />
             <Desc>{errors?.newCategory?.message}</Desc>
